@@ -4,9 +4,9 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Gatsby + WordPress Integration`,
+    description: `Internal project to demonstrate integrations available in Gatsby, specially with WordPress CMS.`,
+    author: `@wiewior_dev`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -37,16 +37,19 @@ module.exports = {
         baseUrl: process.env.WORDPRESS_URL,
         protocol: process.env.WORDPRESS_PROTOCOL,
         verboseOutput: true,
-        restApiRoutePrefix: `wp-json`,
-        hostingWPCOM: false,
+        hostingWPCOM: true,
+        auth: {
+          wpcom_app_clientSecret: process.env.WORDPRESS_CLIENT_SECRET,
+          wpcom_app_clientId: process.env.WORDPRESS_CLIENT_ID,
+          wpcom_user: process.env.WORDPRESS_USER,
+          wpcom_pass: process.env.WORDPRESS_PASSWORD,
+        },
         includedRoutes: [
-          "**/categories",
-          "**/posts",
-          "**/pages",
-          "**/media",
-          "**/tags",
-          "**/taxonomies",
-          "**/users",
+          `**/categories`,
+          `**/posts`,
+          `**/pages`,
+          `**/users`,
+          `**/media`
         ]
       }
     }
