@@ -1,6 +1,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import Layout from '../components/layout';
+
 export const query = graphql`
   query ($slug: String!) {
     wordpressPost(slug: {eq: $slug}) {
@@ -20,7 +22,9 @@ export const query = graphql`
 `;
 
 export default ({ data: { wordpressPost } }) => (
-  <div dangerouslySetInnerHTML={{
-    __html: wordpressPost.content
-  }} />
+  <Layout>
+    <div dangerouslySetInnerHTML={{
+      __html: wordpressPost.content
+    }} />
+  </Layout>
 );

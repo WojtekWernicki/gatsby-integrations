@@ -11,8 +11,12 @@ const StyledImage = styled(Image)`
   }
 `;
 
+const GridEl = styled.div`
+  width: 100%;
+`;
+
 const Excerpt = ({ post }) => (
-  <>
+  <GridEl>
     <Link to={`/${post.node.slug}`}>
       <StyledImage
         fixed={post.node.featured_media.localFile.sharp.fixed}
@@ -20,10 +24,11 @@ const Excerpt = ({ post }) => (
       />
       <h2>{post.node.title}</h2>
     </Link>
+    <div>Written by {post.node.author.name} {post.node.date}</div>
     <div dangerouslySetInnerHTML={{
       __html: post.node.excerpt
     }} />
-  </>
+  </GridEl>
 );
 
 export default Excerpt;

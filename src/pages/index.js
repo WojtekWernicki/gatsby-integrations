@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
+import styled from 'styled-components';
 
 import Layout from '../components/layout';
 import Excerpt from '../components/post-excerpt';
@@ -35,19 +36,27 @@ export const query = graphql`
   }
 `;
 
+const Grid = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 30px;
+  justify-items: center;
+  padding: 0 30px;
+  margin: 0 auto;
+`;
+
 const IndexPage = ({ data: { posts } }) => (
   <Layout>
     <SEO title="Home" />
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+    <Grid>
       {posts.edges.map(edge => (
         <Excerpt post={edge} />
       ))}
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+    </Grid>
   </Layout>
 );
 
